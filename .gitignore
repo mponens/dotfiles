@@ -17,3 +17,6 @@
 
 !mako/
 !mako/*
+
+!misc/
+!misc/*
