@@ -1,0 +1,17 @@
+border-radius=15
+width=150
+default-timeout=5000
+background-color=#014586AA
+#get it to show top center instead of default top right
+anchor=top-center
+text-alignment=center
+group-by=
+[app-name="audioNotifications"]
+#ensure that we can see audio changes even over things like fullscreen
+layer=overlay
+background-color=#aabbcc
+#this is the default configuration minus the (%g) so that the number of notifications don't show
+format=<b>%s</b>\n%b
+[app-name="brightnessNotifications"]
+layer=overlay
+format=<b>%s</b>\n%b
