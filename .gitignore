@@ -3,6 +3,9 @@
 !hypr/
 !hypr/*
 
+!scripts/
+!scripts/*
+
 !kitty/
 !kitty/*
 
