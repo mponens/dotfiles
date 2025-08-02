@@ -17,6 +17,7 @@
 !nvim/lua/*
 !nvim/lua/config/*
 !nvim/lua/plugins/*
+!nvim/lua/utils/*
 
 !tmux/
 !tmux/*

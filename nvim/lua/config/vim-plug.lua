@@ -1,12 +1,7 @@
-local function is_nix_managed()
-  return vim.g.nix_managed_plugins or 
-         vim.fn.has('nixos') == 1 or 
-         os.getenv('NIX_STORE') ~= nil or
-         vim.fn.filereadable('/etc/NIXOS') == 1
-end
+local nix = require("utils.nix")
 
 -- Only setup vim-plug if plugins are not managed by Nix
-if not is_nix_managed() then
+if not nix.is_nix_managed() then
   vim.cmd([[
     let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
     if empty(glob(data_dir . '/autoload/plug.vim'))
