@@ -1,5 +1,9 @@
 -- CMP - Autocompletion --------------------------------------------------------
 local cmp = require 'cmp'
+local luasnip = require("luasnip")
+require("luasnip.loaders.from_lua").lazy_load()
+require("luasnip.loaders.from_vscode").lazy_load()
+
 cmp.setup {
   snippet = {
     expand = function(args)
@@ -22,8 +26,8 @@ cmp.setup {
         cmp.select_next_item()
       elseif luasnip.expand_or_jumpable() then
         luasnip.expand_or_jump()
-      elseif has_words_before() then
-        cmp.complete()
+      --[[ elseif luasnip.has_words_before() then
+        cmp.complete() ]]
       else
         fallback()
       end

@@ -11,9 +11,6 @@ if not nix.is_nix_managed() then
     set runtimepath^=~/.vim runtimepath+=~/.vim/after
     let &packpath = &runtimepath
     
-    if filereadable(expand('~/.vimrc'))
-      source ~/.vimrc
-    endif
 
     "plugins
     call plug#begin()

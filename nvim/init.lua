@@ -6,6 +6,9 @@ require("config")
 require("plugins")
 
 vim.cmd([[
+	if filereadable(expand('~/.vimrc'))
+	  source ~/.vimrc
+	endif
 	let mapleader = ","
 	map <Leader>t :NvimTreeToggle<Enter>
 	map <Leader>ff :Telescope find_files<Enter>
