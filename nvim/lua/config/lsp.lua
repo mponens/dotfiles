@@ -65,4 +65,4 @@ lspconfig.rust_analyzer.setup({
 	}
 })
 lspconfig.asm_lsp.setup{}
-
+lspconfig.lua_ls.setup{}
