@@ -48,7 +48,7 @@ end
 -- }}}
 
 -- {{{ Variable definitions
-local chosen_theme = "zenburn"
+local chosen_theme = "something"
 local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chosen_theme)
 beautiful.init(theme_path)
 
@@ -124,28 +124,6 @@ local taglist_buttons = gears.table.join(
 	awful.button({}, 5, function(t) awful.tag.viewprev(t.screen) end)
 )
 
-local tasklist_buttons = gears.table.join(
-	awful.button({}, 1, function(c)
-		if c == client.focus then
-			c.minimized = true
-		else
-			c:emit_signal(
-				"request::activate",
-				"tasklist",
-				{ raise = true }
-			)
-		end
-	end),
-	awful.button({}, 3, function()
-		awful.menu.client_list({ theme = { width = 250 } })
-	end),
-	awful.button({}, 4, function()
-		awful.client.focus.byidx(1)
-	end),
-	awful.button({}, 5, function()
-		awful.client.focus.byidx(-1)
-	end))
-
 local function set_wallpaper(s)
 	-- Wallpaper
 	if beautiful.wallpaper then
@@ -161,7 +139,6 @@ end
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
 
-local battery_widget = require("awesome-wm-widgets.battery-widget.battery")
 awful.screen.connect_for_each_screen(function(s)
 	-- Wallpaper
 	set_wallpaper(s)
@@ -178,49 +155,29 @@ awful.screen.connect_for_each_screen(function(s)
 		buttons = taglist_buttons
 	}
 
-	-- Create a tasklist widget
-	s.mytasklist = awful.widget.tasklist {
-		screen          = s,
-		filter          = awful.widget.tasklist.filter.currenttags,
-		buttons         = tasklist_buttons,
-
-		layout          = {
-			spacing = 10,
-			layout = wibox.layout.fixed.horizontal,
-		},
-
-		widget_template = {
-			{
-				{
-					-- Remove the icon widget entirely, only keep text
-					{
-						id     = 'text_role',
-						widget = wibox.widget.textbox,
-					},
-					layout = wibox.layout.fixed.horizontal,
-				},
-				widget = wibox.container.margin
-			},
-			id     = 'background_role',
-			widget = wibox.container.background,
-		},
-	}
-
 	-- Create the wibox
-	s.mywibox = awful.wibar({ position = "top", screen = s })
+	s.mywibox = awful.wibar({
+		position = "top",
+		screen = s,
+		bg = "#00000000",
+	})
 
 	-- Add widgets to the wibox
 	s.mywibox:setup {
 		layout = wibox.layout.align.horizontal,
+		expand = "none",
 		{ -- Left widgets
 			layout = wibox.layout.fixed.horizontal,
 			s.mytaglist,
 			s.mypromptbox,
 		},
+		{
+			layout = wibox.layout.fixed.horizontal,
+			mytextclock,
+		},
 		{ -- Right widgets
 			layout = wibox.layout.fixed.horizontal,
 			mykeyboardlayout,
-			mytextclock,
 			wibox.widget.systray(),
 		},
 	}
@@ -526,6 +483,10 @@ client.connect_signal("manage", function(c)
 		-- Prevent clients from being unreachable after screen count changes.
 		awful.placement.no_offscreen(c)
 	end
+end)
+
+client.connect_signal("property::minimized", function(c)
+	c.minimized = false
 end)
 
 -- Add a titlebar if titlebars_enabled is set to true in the rules.
