@@ -1,1 +1,6 @@
 .luarc.json
+# this is really stupid
+!themes/*
+!themes/*/*
+!themes/*/*/*
+!themes/*/*/*/*
