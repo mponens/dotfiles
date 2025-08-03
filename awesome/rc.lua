@@ -95,11 +95,6 @@ mymainmenu = awful.menu({
 	}
 })
 
-mylauncher = awful.widget.launcher({
-	image = beautiful.awesome_icon,
-	menu = mymainmenu
-})
-
 -- Menubar configuration
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 -- }}}
@@ -166,6 +161,7 @@ end
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
 
+local battery_widget = require("awesome-wm-widgets.battery-widget.battery")
 awful.screen.connect_for_each_screen(function(s)
 	-- Wallpaper
 	set_wallpaper(s)
@@ -175,14 +171,6 @@ awful.screen.connect_for_each_screen(function(s)
 
 	-- Create a promptbox for each screen
 	s.mypromptbox = awful.widget.prompt()
-	-- Create an imagebox widget which will contain an icon indicating which layout we're using.
-	-- We need one layoutbox per screen.
-	s.mylayoutbox = awful.widget.layoutbox(s)
-	s.mylayoutbox:buttons(gears.table.join(
-		awful.button({}, 1, function() awful.layout.inc(1) end),
-		awful.button({}, 3, function() awful.layout.inc(-1) end),
-		awful.button({}, 4, function() awful.layout.inc(1) end),
-		awful.button({}, 5, function() awful.layout.inc(-1) end)))
 	-- Create a taglist widget
 	s.mytaglist = awful.widget.taglist {
 		screen  = s,
@@ -192,9 +180,30 @@ awful.screen.connect_for_each_screen(function(s)
 
 	-- Create a tasklist widget
 	s.mytasklist = awful.widget.tasklist {
-		screen  = s,
-		filter  = awful.widget.tasklist.filter.currenttags,
-		buttons = tasklist_buttons
+		screen          = s,
+		filter          = awful.widget.tasklist.filter.currenttags,
+		buttons         = tasklist_buttons,
+
+		layout          = {
+			spacing = 10,
+			layout = wibox.layout.fixed.horizontal,
+		},
+
+		widget_template = {
+			{
+				{
+					-- Remove the icon widget entirely, only keep text
+					{
+						id     = 'text_role',
+						widget = wibox.widget.textbox,
+					},
+					layout = wibox.layout.fixed.horizontal,
+				},
+				widget = wibox.container.margin
+			},
+			id     = 'background_role',
+			widget = wibox.container.background,
+		},
 	}
 
 	-- Create the wibox
@@ -205,17 +214,14 @@ awful.screen.connect_for_each_screen(function(s)
 		layout = wibox.layout.align.horizontal,
 		{ -- Left widgets
 			layout = wibox.layout.fixed.horizontal,
-			mylauncher,
 			s.mytaglist,
 			s.mypromptbox,
 		},
-		s.mytasklist, -- Middle widget
-		{       -- Right widgets
+		{ -- Right widgets
 			layout = wibox.layout.fixed.horizontal,
 			mykeyboardlayout,
-			wibox.widget.systray(),
 			mytextclock,
-			s.mylayoutbox,
+			wibox.widget.systray(),
 		},
 	}
 end)
@@ -494,11 +500,11 @@ awful.rules.rules = {
 		properties = { floating = true }
 	},
 
-	-- Add titlebars to normal clients and dialogs
+	-- Remove titlebars from normal clients and dialogs
 	{
 		rule_any = { type = { "normal", "dialog" }
 		},
-		properties = { titlebars_enabled = true }
+		properties = { titlebars_enabled = false }
 	},
 
 	-- Set Firefox to always map on the tag named "2" on screen 1.
