@@ -48,7 +48,7 @@ end
 -- }}}
 
 -- {{{ Variable definitions
-local chosen_theme = "zenburn"
+local chosen_theme = "gtk"
 local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chosen_theme)
 -- beautiful.init(gears.filesystem.get_themes_dir() .. "zenburn/theme.lua")
 beautiful.init(theme_path)
