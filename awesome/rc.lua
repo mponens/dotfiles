@@ -183,6 +183,8 @@ awful.screen.connect_for_each_screen(function(s)
 		return f
 	end
 
+	local r_shape = rrect(16)
+
 	-- Add widgets to the wibox
 	mywibox:setup {
 		{
@@ -191,7 +193,7 @@ awful.screen.connect_for_each_screen(function(s)
 				{
 					mytaglist,
 					bg = "#0f6e6e",
-					shape = rrect(16),
+					shape = r_shape,
 					widget = wibox.container.background,
 				}
 			},
@@ -200,7 +202,7 @@ awful.screen.connect_for_each_screen(function(s)
 				{
 					mytextclock,
 					bg = "#663a00",
-					shape = rrect(16),
+					shape = r_shape,
 					widget = wibox.container.background,
 				},
 			},
@@ -210,7 +212,7 @@ awful.screen.connect_for_each_screen(function(s)
 					mykeyboardlayout,
 					wibox.widget.systray(),
 					bg = "#0f6e6e",
-					shape = rrect(16),
+					shape = r_shape,
 					widget = wibox.container.background,
 				},
 			},
@@ -221,7 +223,7 @@ awful.screen.connect_for_each_screen(function(s)
 		left = 10,
 		right = 10,
 		top = 2,
-		bottom = 2,
+		bottom = 0,
 	}
 	s.mywibox = mywibox
 end)
