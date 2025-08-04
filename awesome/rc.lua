@@ -139,21 +139,7 @@ end
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
 
-local function create_circular_container(widget, bg_color)
-	return wibox.container.background(
-		wibox.container.margin(widget, 10, 10, 5, 5), -- Add padding inside
-		bg_color,
-		function(cr, width, height)
-			-- Create rounded rectangle shape
-			local radius = height / 2
-			cr:new_sub_path()
-			cr:arc(radius, radius, radius, math.pi / 2, 3 * math.pi / 2)
-			cr:arc(width - radius, radius, radius, 3 * math.pi / 2, math.pi / 2)
-			cr:close_path()
-		end
-	)
-end
-
+local bar_widget = require("widgets.bar")
 awful.screen.connect_for_each_screen(function(s)
 	-- Wallpaper
 	set_wallpaper(s)
@@ -166,65 +152,8 @@ awful.screen.connect_for_each_screen(function(s)
 		filter  = awful.widget.taglist.filter.all,
 		buttons = taglist_buttons
 	}
+	local mywibox = bar_widget.bar(s, taglist_buttons)
 
-	-- Create a taglist widget
-
-	-- Create the wibox
-	local mywibox = awful.wibar({
-		position = "top",
-		screen = s,
-		bg = "#00000000",
-	})
-
-	local rrect = function(radius)
-		local f = function(cr, width, height)
-			gears.shape.rounded_rect(cr, width, height, radius)
-		end
-		return f
-	end
-
-	local r_shape = rrect(16)
-
-	-- Add widgets to the wibox
-	mywibox:setup {
-		{
-			{ -- Left widgets
-				layout = wibox.layout.fixed.horizontal,
-				{
-					mytaglist,
-					bg = "#0f6e6e",
-					shape = r_shape,
-					widget = wibox.container.background,
-				}
-			},
-			{
-				layout = wibox.layout.fixed.horizontal,
-				{
-					mytextclock,
-					bg = "#663a00",
-					shape = r_shape,
-					widget = wibox.container.background,
-				},
-			},
-			{ -- Right widgets
-				layout = wibox.layout.fixed.horizontal,
-				{
-					mykeyboardlayout,
-					wibox.widget.systray(),
-					bg = "#0f6e6e",
-					shape = r_shape,
-					widget = wibox.container.background,
-				},
-			},
-			layout = wibox.layout.align.horizontal,
-			expand = "none",
-		},
-		widget = wibox.container.margin,
-		left = 10,
-		right = 10,
-		top = 2,
-		bottom = 0,
-	}
 	s.mywibox = mywibox
 end)
 -- }}}
@@ -320,8 +249,9 @@ globalkeys = gears.table.join(
 		{ description = "restore minimized", group = "client" }),
 
 	-- Prompt
-	awful.key({ modkey }, "r", function() awful.screen.focused().mypromptbox:run() end,
-		{ description = "run prompt", group = "launcher" }),
+	awful.key({ modkey }, "r", function()
+		awful.spawn("rofi -show run")
+	end, { description = "run prompt", group = "launcher" }),
 
 	awful.key({ modkey }, "x",
 		function()

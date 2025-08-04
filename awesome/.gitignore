@@ -2,3 +2,5 @@
 # this is really stupid
 !themes/
 !themes/**
+!widgets/
+!widgets/**
