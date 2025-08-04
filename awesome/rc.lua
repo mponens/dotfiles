@@ -185,36 +185,43 @@ awful.screen.connect_for_each_screen(function(s)
 
 	-- Add widgets to the wibox
 	mywibox:setup {
-		{ -- Left widgets
-			layout = wibox.layout.fixed.horizontal,
-			{
-				mytaglist,
-				bg = "#0f6e6e",
-				shape = rrect(16),
-				widget = wibox.container.background,
-			}
-		},
 		{
-			layout = wibox.layout.fixed.horizontal,
-			{
-				mytextclock,
-				bg = "#663a00",
-				shape = rrect(16),
-				widget = wibox.container.background,
+			{ -- Left widgets
+				layout = wibox.layout.fixed.horizontal,
+				{
+					mytaglist,
+					bg = "#0f6e6e",
+					shape = rrect(16),
+					widget = wibox.container.background,
+				}
 			},
-		},
-		{ -- Right widgets
-			layout = wibox.layout.fixed.horizontal,
 			{
-				mykeyboardlayout,
-				wibox.widget.systray(),
-				bg = "#0f6e6e",
-				shape = rrect(16),
-				widget = wibox.container.background,
+				layout = wibox.layout.fixed.horizontal,
+				{
+					mytextclock,
+					bg = "#663a00",
+					shape = rrect(16),
+					widget = wibox.container.background,
+				},
 			},
+			{ -- Right widgets
+				layout = wibox.layout.fixed.horizontal,
+				{
+					mykeyboardlayout,
+					wibox.widget.systray(),
+					bg = "#0f6e6e",
+					shape = rrect(16),
+					widget = wibox.container.background,
+				},
+			},
+			layout = wibox.layout.align.horizontal,
+			expand = "none",
 		},
-		layout = wibox.layout.align.horizontal,
-		expand = "none",
+		widget = wibox.container.margin,
+		left = 10,
+		right = 10,
+		top = 2,
+		bottom = 2,
 	}
 	s.mywibox = mywibox
 end)
