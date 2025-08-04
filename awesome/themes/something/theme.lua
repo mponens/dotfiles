@@ -13,7 +13,7 @@ theme.wallpaper                                 = themes_path .. "something/sung
 -- }}}
 
 -- {{{ Styles
-theme.font                                      = "JetBrainsMono Nerd Font 12"
+theme.font                                      = "JetBrainsMono Nerd Font 10"
 
 -- {{{ Colors
 theme.fg_normal                                 = "#DCDCCC"

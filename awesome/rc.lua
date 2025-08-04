@@ -161,41 +161,62 @@ awful.screen.connect_for_each_screen(function(s)
 	-- Each screen has its own tag table.
 	awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
 
-	-- Create a promptbox for each screen
-	s.mypromptbox = awful.widget.prompt()
-	-- Create a taglist widget
-	s.mytaglist = awful.widget.taglist {
+	local mytaglist = awful.widget.taglist {
 		screen  = s,
 		filter  = awful.widget.taglist.filter.all,
 		buttons = taglist_buttons
 	}
 
+	-- Create a taglist widget
+
 	-- Create the wibox
-	s.mywibox = awful.wibar({
+	local mywibox = awful.wibar({
 		position = "top",
 		screen = s,
 		bg = "#00000000",
 	})
 
+	local rrect = function(radius)
+		local f = function(cr, width, height)
+			gears.shape.rounded_rect(cr, width, height, radius)
+		end
+		return f
+	end
+
 	-- Add widgets to the wibox
-	s.mywibox:setup {
-		layout = wibox.layout.align.horizontal,
-		expand = "none",
+	mywibox:setup {
 		{ -- Left widgets
 			layout = wibox.layout.fixed.horizontal,
-			s.mytaglist,
-			s.mypromptbox,
+			{
+				mytaglist,
+				bg = "#0f6e6e",
+				shape = rrect(16),
+				widget = wibox.container.background,
+			}
 		},
 		{
 			layout = wibox.layout.fixed.horizontal,
-			mytextclock,
+			{
+				mytextclock,
+				bg = "#663a00",
+				shape = rrect(16),
+				widget = wibox.container.background,
+			},
 		},
 		{ -- Right widgets
 			layout = wibox.layout.fixed.horizontal,
-			mykeyboardlayout,
-			wibox.widget.systray(),
+			{
+				mykeyboardlayout,
+				wibox.widget.systray(),
+				bg = "#0f6e6e",
+				shape = rrect(16),
+				widget = wibox.container.background,
+			},
 		},
+		layout = wibox.layout.align.horizontal,
+		expand = "none",
 	}
+	s.mywibox = mywibox
 end)
 -- }}}
 
