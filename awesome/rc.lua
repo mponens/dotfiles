@@ -139,6 +139,21 @@ end
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
 
+local function create_circular_container(widget, bg_color)
+	return wibox.container.background(
+		wibox.container.margin(widget, 10, 10, 5, 5), -- Add padding inside
+		bg_color,
+		function(cr, width, height)
+			-- Create rounded rectangle shape
+			local radius = height / 2
+			cr:new_sub_path()
+			cr:arc(radius, radius, radius, math.pi / 2, 3 * math.pi / 2)
+			cr:arc(width - radius, radius, radius, 3 * math.pi / 2, math.pi / 2)
+			cr:close_path()
+		end
+	)
+end
+
 awful.screen.connect_for_each_screen(function(s)
 	-- Wallpaper
 	set_wallpaper(s)
