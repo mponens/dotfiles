@@ -31,13 +31,8 @@ bar.bar = function(s, taglist_buttons)
 	mywibox:setup {
 		{
 			{ -- Left widgets
+				mytaglist,
 				layout = wibox.layout.fixed.horizontal,
-				{
-					mytaglist,
-					bg = "#0f6e6e",
-					shape = r_shape,
-					widget = wibox.container.background,
-				}
 			},
 			{
 				layout = wibox.layout.fixed.horizontal,
