@@ -5,13 +5,13 @@ local wibox = require("wibox")
 local gfs = require("gears.filesystem")
 local dpi = require('beautiful').xresources.apply_dpi
 
-local utils = require("widgets.utils")
+local widgets = require("widgets")
 
 local bar = {}
 
 -- Takes a screen and adds a bar to it
 bar.bar = function(s, taglist_buttons)
-	local r_shape = utils.rrect(16)
+	local r_shape = widgets.utils.rrect(16)
 
 	local mytaglist = awful.widget.taglist {
 		screen = s,
