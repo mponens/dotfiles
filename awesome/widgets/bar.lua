@@ -5,13 +5,15 @@ local wibox = require("wibox")
 local gfs = require("gears.filesystem")
 local dpi = require('beautiful').xresources.apply_dpi
 
-local widgets = require("widgets")
+local utils = require("widgets.utils")
+local battery = require("widgets.bat")
 
 local bar = {}
 
 -- Takes a screen and adds a bar to it
 bar.bar = function(s, taglist_buttons)
-	local r_shape = widgets.utils.rrect(16)
+	local r_shape = utils.rrect(16)
+	local battery_widget = battery.battery()
 
 	local mytaglist = awful.widget.taglist {
 		screen = s,
@@ -23,6 +25,8 @@ bar.bar = function(s, taglist_buttons)
 		screen = s,
 		bg = "#00000000",
 	})
+	local mykeyboardlayout = awful.widget.keyboardlayout()
+	local mytextclock = wibox.widget.textclock()
 
 	mywibox:setup {
 		{
@@ -45,14 +49,10 @@ bar.bar = function(s, taglist_buttons)
 				},
 			},
 			{ -- Right widgets
-				layout = wibox.layout.fixed.horizontal,
-				{
-					mykeyboardlayout,
-					wibox.widget.systray(),
-					bg = "#0f6e6e",
-					shape = r_shape,
-					widget = wibox.container.background,
-				},
+				battery_widget,
+				mykeyboardlayout,
+				wibox.widget.systray(),
+				layout = wibox.layout.align.horizontal,
 			},
 			layout = wibox.layout.align.horizontal,
 			expand = "none",

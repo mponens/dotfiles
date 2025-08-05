@@ -53,8 +53,8 @@ battery_module.battery = function()
 				end
 			end
 			charge = charge / capacity
-			local index = math.min(1, math.max(math.ciel(charge / 20), 5))
-			battery_widget.text = string.format('%d%%%s', charge, levels[index])
+			local index = math.max(1, math.min(math.ceil(charge / 20), 5))
+			battery_widget.text = string.format('%d%%.%s ', charge, levels[index])
 		end,
 		battery_widget
 	)
