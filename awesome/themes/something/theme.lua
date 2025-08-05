@@ -2,6 +2,14 @@
 --  "Something" awesome theme  --
 --    Adapted from "Zenburn" by Adrian C. (anrxc)   --
 -------------------------------
+local gears                                     = require("gears")
+
+local rrect                                     = function(radius)
+    local f = function(cr, width, height)
+        gears.shape.rounded_rect(cr, width, height, radius)
+    end
+    return f
+end
 
 --local themes_path                               = require("gears.filesystem").get_themes_dir()
 local themes_path                               = string.format("%s/.config/awesome/themes/", os.getenv("HOME"))
@@ -38,6 +46,12 @@ theme.titlebar_bg_focus                         = "#3F3F3F"
 theme.titlebar_bg_normal                        = "#3F3F3F"
 -- }}}
 
+theme.notification_max_height                   = dpi(40)
+theme.notification_border_color                 = "#4287f5"
+theme.notification_bg                           = "#0855cf"
+theme.notification_opacity                      = 0.8
+theme.notification_icon_size                    = dpi(20)
+
 -- There are other variable sets
 -- overriding the default one when
 -- defined, the sets are:
@@ -60,7 +74,7 @@ theme.titlebar_bg_normal                        = "#3F3F3F"
 -- }}}
 
 -- {{{ Mouse finder
-theme.mouse_finder_color                        = "#CC9393"
+theme.mouse_finder_color                        = "#163b75"
 -- mouse_finder_[timeout|animate_timeout|radius|factor]
 -- }}}
 
