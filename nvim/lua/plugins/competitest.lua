@@ -1,1 +1,3 @@
-require('competitest').setup() -- to use default configuration
+require('competitest').setup {
+	evaluate_template_modifiers = true,
+}
