@@ -2,7 +2,7 @@ local nix = require("utils.nix")
 
 -- Only setup vim-plug if plugins are not managed by Nix
 if not nix.is_nix_managed() then
-  vim.cmd([[
+	vim.cmd([[
     let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
     if empty(glob(data_dir . '/autoload/plug.vim'))
       silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
@@ -10,7 +10,7 @@ if not nix.is_nix_managed() then
     endif
     set runtimepath^=~/.vim runtimepath+=~/.vim/after
     let &packpath = &runtimepath
-    
+
 
     "plugins
     call plug#begin()
@@ -61,8 +61,13 @@ if not nix.is_nix_managed() then
     Plug 'echasnovski/mini.nvim'
     Plug 'MeanderingProgrammer/render-markdown.nvim'
 
+	
+
+	Plug 'MunifTanjim/nui.nvim'
+	Plug 'xeluxee/competitest.nvim'
+
     call plug#end()
   ]])
 else
-  print("Plugins managed by Nix - skipping vim-plug setup")
+	print("Plugins managed by Nix - skipping vim-plug setup")
 end
