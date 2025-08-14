@@ -247,6 +247,14 @@ globalkeys = gears.table.join(
 		awful.spawn("rofi -show run")
 	end, { description = "run prompt", group = "launcher" }),
 
+	awful.key({ modkey, "Shift" }, "s", function()
+		awful.spawn("flameshot gui")
+	end, { description = "take a screenshot", group = "launcher" }),
+
+	awful.key({ modkey, "Shift" }, "v", function()
+		awful.spawn("rofi -modi 'clipboard:greenclip print' -show clipboard -run-command '{cmd}'")
+	end, { description = "show clipboard history", group = "launcher" }),
+
 	awful.key({ modkey }, "x",
 		function()
 			awful.prompt.run {
