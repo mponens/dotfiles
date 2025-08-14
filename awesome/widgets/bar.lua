@@ -38,7 +38,7 @@ bar.bar = function(s, taglist_buttons)
 				layout = wibox.layout.fixed.horizontal,
 				{
 					mytextclock,
-					bg = "#663a00",
+					bg = "#663a0000",
 					shape = r_shape,
 					widget = wibox.container.background,
 				},

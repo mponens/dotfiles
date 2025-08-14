@@ -255,16 +255,19 @@ globalkeys = gears.table.join(
 		awful.spawn("rofi -modi 'clipboard:greenclip print' -show clipboard -run-command '{cmd}'")
 	end, { description = "show clipboard history", group = "launcher" }),
 
-	awful.key({ modkey }, "x",
+	awful.key({ modkey }, "t",
 		function()
-			awful.prompt.run {
-				prompt       = "Run Lua code: ",
-				textbox      = awful.screen.focused().mypromptbox.widget,
-				exe_callback = awful.util.eval,
-				history_path = awful.util.get_cache_dir() .. "/history_eval"
-			}
-		end,
-		{ description = "lua execute prompt", group = "awesome" }),
+			local traywidget = wibox.widget.systray()
+			traywidget:set_screen(awful.screen.focused())
+		end, { description = "move systray to screen", group = "awesome" }),
+
+	awful.key({ modkey }, "=",
+		function()
+			local traywidget = wibox.widget.systray()
+			traywidget.visible = not traywidget.visible;
+			traywidget:set_screen(awful.screen.focused())
+		end, { description = "toggle systray", group = "awesome" }),
+
 	-- Menubar
 	awful.key({ modkey }, "p", function() menubar.show() end,
 		{ description = "show the menubar", group = "launcher" })
