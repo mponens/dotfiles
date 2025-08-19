@@ -55,7 +55,7 @@ lspconfig.html.setup {
 	capabilities = capabilities
 }
 
-lspconfig.jdtls.setup {}
+-- lspconfig.jdtls.setup {}
 
 lspconfig.emmet_ls.setup {
 	capabilities = capabilities
