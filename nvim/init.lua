@@ -27,9 +27,8 @@ vim.cmd([[
 	map <Leader>ca :CodeCompanionActions <Enter>
 
 	set termguicolors
-	colorscheme atlas
+	colorscheme fogbell_light
 
 ]])
 
 require('nvim-ts-autotag').setup()
-
