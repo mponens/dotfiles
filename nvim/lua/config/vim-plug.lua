@@ -21,6 +21,7 @@ if not nix.is_nix_managed() then
     Plug 'nvim-tree/nvim-tree.lua'
 
     Plug 'dracula/vim', {'as': 'dracula'}
+	Plug 'chriskempson/base16-vim'
     Plug 'nordtheme/vim'
     Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 

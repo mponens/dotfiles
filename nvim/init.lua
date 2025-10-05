@@ -27,7 +27,7 @@ vim.cmd([[
 	map <Leader>ca :CodeCompanionActions <Enter>
 
 	set termguicolors
-	colorscheme catppuccin-frappe
+	colorscheme atlas
 
 ]])
 
