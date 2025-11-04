@@ -52,13 +52,16 @@ let s:voidRed = {'gui': '#821A1A', 'cterm256': '1'}
 let s:voidRed2 = {'gui': '#FF0000', 'cterm256': '196'}
 let s:none = {'gui': 'NONE', 'cterm256': 'NONE'}
 
+let s:cPage = {'gui': '#fbf1c7', 'cterm256': '252'}
+
 " ==========================
 " Definitions
 " ==========================
 "    <sid>hi(GROUP, FOREGROUND, BACKGROUND, ATTRIBUTE)
 
 " Editor
-call <sid>hi('ColorColumn', s:none, s:voidGray1, 'none')
+call <sid>hi('ColorColumn', s:none, s:voidGray4, 'none')
+
 call <sid>hi('Cursor', s:voidSteel, s:voidBlack2, 'none')
 call <sid>hi('CursorColumn', s:none, s:voidGray1, 'none')
 call <sid>hi('CursorLine', s:none, s:voidBlue, 'none')
@@ -70,7 +73,7 @@ call <sid>hi('IncSearch', s:voidSteel, s:voidGold, 'none')
 " call <sid>hi('LineNr', s:voidGray3, s:voidBlack2, 'none')
 call <sid>hi('LineNr', s:voidGray3, s:none, 'none')
 call <sid>hi('MatchParen', s:voidBlack, s:voidGray4, 'none')
-call <sid>hi('Normal', s:voidBlack, s:voidSteel, 'none')
+call <sid>hi('Normal', s:voidBlack, s:cPage, 'none')
 call <sid>hi('Pmenu', s:voidBlack, s:voidGray4, 'none')
 call <sid>hi('PmenuSel', s:voidSteel, s:voidGray2, 'none')
 call <sid>hi('Search', s:voidSteel, s:voidGold, 'none')
