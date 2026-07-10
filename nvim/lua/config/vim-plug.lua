@@ -34,8 +34,6 @@ if not nix.is_nix_managed() then
 
     Plug 'williamboman/mason.nvim'
     Plug 'williamboman/mason-lspconfig.nvim'
-
-    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     Plug 'windwp/nvim-ts-autotag'
 
     Plug 'stevearc/conform.nvim'
