@@ -15,6 +15,7 @@ vim.cmd([[
 	map <Leader>fd :Telescope lsp_workspace_symbols<Enter>
 	map <Leader>fs :Telescope lsp_document_symbols<Enter>
 	map <Leader>g  :Telescope  live_grep<Enter>
+	map <Leader>r  :Telescope  resume<Enter>
 
 	map <Leader>vc :VimuxPromptCommand<Enter>
 	map <Leader>vr :VimuxRunLastCommand<Enter>
