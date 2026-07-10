@@ -14,17 +14,12 @@ vim.cmd([[
 	map <Leader>ff :Telescope find_files<Enter>
 	map <Leader>fd :Telescope lsp_workspace_symbols<Enter>
 	map <Leader>fs :Telescope lsp_document_symbols<Enter>
-	map <Leader>g :Glow<Enter>
-	map <Leader>G :Glow!<Enter>
+	map <Leader>g  :Telescope  live_grep<Enter>
 
 	map <Leader>vc :VimuxPromptCommand<Enter>
 	map <Leader>vr :VimuxRunLastCommand<Enter>
 	map <Leader>vo :VimuxOpenRunner<Enter>
 	map <Leader>vx :VimuxCloseRunner<Enter>
-
-	map <Leader>cc :CodeCompanionChat Toggle<Enter>
-	map <Leader>cn :CodeCompanionChat <Enter>
-	map <Leader>ca :CodeCompanionActions <Enter>
 
 	set termguicolors
 	colorscheme fogbell_light

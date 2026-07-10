@@ -83,7 +83,7 @@ call <sid>hi('SignColumn', s:none, s:none, 'none')
 call <sid>hi('StatusLine', s:voidSteel, s:voidBlack, 'none')
 call <sid>hi('StatusLineNC', s:voidGray3, s:voidBlack2, 'none')
 call <sid>hi('VertSplit', s:voidBlack, s:voidGray3, 'none')
-call <sid>hi('Visual', s:none, s:voidGray2, 'none')
+call <sid>hi('Visual', s:none, s:voidSteel, 'none')			" Text highlight
 
 " General
 call <sid>hi('Boolean', s:voidBlack, s:none, 'none')
