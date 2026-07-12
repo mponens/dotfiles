@@ -1,0 +1,1 @@
+require("splitasm").setup()
