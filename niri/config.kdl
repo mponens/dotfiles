@@ -121,7 +121,7 @@ input {
 // https://yalter.github.io/niri/Configuration:-Layout
 layout {
     // Set gaps around windows in logical pixels.
-    gaps 2 
+    gaps 2
 
     // When to center a column when changing focus, options are:
     // - "never", default behavior, focusing an off-screen column will keep at the left
@@ -144,13 +144,21 @@ layout {
         // fixed 1920
     }
 
+    tab-indicator {
+        width 4 
+        gap 4
+        length total-proportion=0.5
+        position "bottom"
+        place-within-column
+    }
+
     // You can also customize the heights that "switch-preset-window-height" (Mod+Shift+R) toggles between.
     // preset-window-heights { }
 
     // You can change the default width of the new windows.
-    default-column-width { proportion 0.5; }
+    // default-column-width { proportion 1.0; }
     // If you leave the brackets empty, the windows themselves will decide their initial width.
-    // default-column-width {}
+    default-column-width {}
 
     // By default focus ring and border are rendered as a solid background rectangle
     // behind windows. That is, they will show up through semitransparent windows.
@@ -166,7 +174,7 @@ layout {
     // You can change how the focus ring looks.
     focus-ring {
         // Uncomment this line to disable the focus ring.
-        // off
+        off
 
         // How many logical pixels the ring extends out from the windows.
         width 2
@@ -177,13 +185,15 @@ layout {
         // - CSS-like notation: "rgb(255, 127, 0)", rgba(), hsl() and a few others.
 
         // Color of the ring on the active monitor.
-        active-color "#7fc8ff"
+        // active-color "#7fc8ff"
+        active-color "#1f7a8c"
 
         // Color of the ring on inactive monitors.
         //
         // The focus ring only draws around the active window, so the only place
         // where you can see its inactive-color is on other monitors.
-        inactive-color "#505050"
+        //inactive-color "#505050"
+        inactive-color "#e1e5f2"
 
         // You can also use gradients. They take precedence over solid colors.
         // Gradients are rendered the same as CSS linear-gradient(angle, from, to).
@@ -353,7 +363,7 @@ window-rule {
 // Example: enable rounded corners for all windows.
 // (This example rule is commented out with a "/-" in front.)
 /-window-rule {
-    geometry-corner-radius 12
+    geometry-corner-radius 12 
     clip-to-geometry true
 }
 
@@ -373,9 +383,13 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
-    Mod+T hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
+    //Mod+T hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
+
     Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
-    Super+Shift+V hotkey-overlay-title="Clipboard" { spawn "sh" "-lc" "cliphist list | fuzzel --dmenu | cliphist decode | wl-copy"; }
+	Mod+T hotkey-overlay-title="Scratch Firefox" { spawn "sh" "-lc" "~/.config/niri/scripts/scratch.sh firefox"; }
+	Mod+S hotkey-overlay-title="Scratch Sioyek" { spawn "sh" "-lc" "~/.config/niri/scripts/scratch.sh sioyek"; }
+	Mod+E hotkey-overlay-title="Scratch Obsidian" { spawn "sh" "-lc" "~/.config/niri/scripts/scratch.sh obsidian"; }
+    Mod+Shift+V hotkey-overlay-title="Clipboard" { spawn "sh" "-lc" "cliphist list | fuzzel --dmenu | cliphist decode | wl-copy"; }
     Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
 	Mod+Shift+O { spawn "~/.config/niri/scripts/ocr.sh"; }
 
@@ -597,7 +611,7 @@ binds {
 
     // Move the focused window between the floating and the tiling layout.
     Mod+V       { toggle-window-floating; }
-    Mod+Shift+V { switch-focus-between-floating-and-tiling; }
+    Mod+Alt+V { switch-focus-between-floating-and-tiling; }
 
     // Toggle tabbed column display mode.
     // Windows in this column will appear as vertical tabs,
