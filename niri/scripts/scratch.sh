@@ -35,8 +35,7 @@ if [[ $(jq '.id' <<< ${workspace}) -eq $(jq '.workspace_id' <<< ${app}) ]] &&
   exit 0;
 fi
 
-
-
+niri msg action move-window-to-monitor $(jq -r '.output' <<< ${workspace}) --id ${app_id}
 niri msg action move-window-to-floating --id ${app_id}
 niri msg action move-window-to-workspace $(jq '.idx' <<< ${workspace}) --window-id ${app_id}
 niri msg action focus-window --id ${app_id}
