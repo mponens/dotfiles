@@ -26,5 +26,3 @@ vim.cmd([[
 	colorscheme fogbell_light
 
 ]])
-
-require('nvim-ts-autotag').setup()

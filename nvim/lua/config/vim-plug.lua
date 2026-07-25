@@ -18,6 +18,7 @@ if not nix.is_nix_managed() then
     Plug 'tpope/vim-sensible'
     Plug 'nvim-tree/nvim-web-devicons' " optional
     Plug 'nvim-tree/nvim-tree.lua'
+	Plug 'wakatime/vim-wakatime'
 
     Plug 'dracula/vim', {'as': 'dracula'}
 	Plug 'chriskempson/base16-vim'
