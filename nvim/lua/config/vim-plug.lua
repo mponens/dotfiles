@@ -14,8 +14,7 @@ if not nix.is_nix_managed() then
 
     "plugins
     call plug#begin()
-	"Plug 'NickTsaizer/splitasm.nvim'
-	Plug '~/technical/nvim-plugins/splitasm.nvim'
+	Plug 'NickTsaizer/splitasm.nvim'
 
     Plug 'tpope/vim-sensible'
     Plug 'nvim-tree/nvim-web-devicons' " optional
