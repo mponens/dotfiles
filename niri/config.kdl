@@ -397,6 +397,7 @@ binds {
 
     Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
 	Mod+T hotkey-overlay-title="Scratch Firefox" { spawn "sh" "-lc" "~/.config/niri/scripts/scratch.sh firefox"; }
+	Mod+A hotkey-overlay-title="Scratch Writer" { spawn "sh" "-lc" "~/.config/niri/scripts/scratch.sh libreoffice-writer"; }
 	Mod+S hotkey-overlay-title="Scratch Sioyek" { spawn "sh" "-lc" "~/.config/niri/scripts/scratch.sh sioyek"; }
 	Mod+E hotkey-overlay-title="Scratch Obsidian" { spawn "sh" "-lc" "~/.config/niri/scripts/scratch.sh md.Obsidian"; }
 	Mod+X hotkey-overlay-title="Unfloat All" { spawn "~/.config/niri/scripts/unfloat.sh"; }
